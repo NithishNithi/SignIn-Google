@@ -1,17 +1,33 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta name="google-signin-client_id" content="208174609287-58lfn63apeemcc54b36o864r0r0ipp4s.apps.googleusercontent.com">
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id"
+        content="208174609287-58lfn63apeemcc54b36o864r0r0ipp4s.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
+
 <body>
-  <div class="g-signin2" data-onsuccess="onSignIn"></div>
-  <script>
-    function onSignIn(googleUser) {
-      var id_token = googleUser.getAuthResponse().id_token;
-      console.log(id_token)
-      
-    }
-  </script>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <script>
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            var profileInfo = document.getElementById('profile-info');
+
+            
+            console.log("123")
+            console.log(profile.getName)
+
+            // Display user profile information
+            profileInfo.innerHTML = `
+        <p>ID: ${profile.getId()}</p>
+        <p>Name: ${profile.getName()}</p>
+        <p>Email: ${profile.getEmail()}</p>
+        <img src="${profile.getImageUrl()}" alt="Profile Picture">
+      `;
+
+        }
+    </script>
 </body>
+
 </html>
